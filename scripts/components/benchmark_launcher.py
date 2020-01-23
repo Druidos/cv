@@ -256,6 +256,8 @@ class BenchmarkLauncher(Launcher):
                 self._upload_results(uploader_config, result_archive)
             if not self.debug:
                 shutil.rmtree(self.process_dir, ignore_errors=True)
+        else:
+            self.logger.warning("No results xml files in output directory: {}".format(self.output_dir))
         if not self.debug:
             clear_symlink(self.tasks_dir)
             for task_dir_in in glob.glob(os.path.join(self.tasks_dir, "*")):
